@@ -2,7 +2,6 @@ package org.clubrockisen.entrycounter.common;
 
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import com.alexrnl.commons.database.structure.Column;
 import com.alexrnl.commons.database.structure.Entity;
@@ -16,8 +15,6 @@ import com.alexrnl.commons.utils.object.Field;
  * @author Alex
  */
 public class Party extends Entity implements Cloneable, Comparable<Party> {
-	/** Logger */
-	private static Logger					lg					= Logger.getLogger(Party.class.getName());
 	
 	/** Serial version UID */
 	private static final long				serialVersionUID	= 6015728894702729632L;
