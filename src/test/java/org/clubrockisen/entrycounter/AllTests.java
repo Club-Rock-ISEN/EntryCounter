@@ -1,6 +1,7 @@
 package org.clubrockisen.entrycounter;
 
 import org.clubrockisen.entrycounter.common.CommonTests;
+import org.clubrockisen.entrycounter.database.DatabaseTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -10,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * @author Alex
  */
 @RunWith(Suite.class)
-@SuiteClasses({ CommonTests.class })
+@SuiteClasses({ CommonTests.class, DatabaseTests.class })
 public class AllTests {
 	
 }
