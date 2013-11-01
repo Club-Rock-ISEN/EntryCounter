@@ -49,7 +49,7 @@ public class PartyDAO extends SQLDAO<Party> {
 		final Party party = new Party();
 		
 		party.setIdParty(result.getInt(columns.get(PartyColumn.ID).getName()));
-		party.setDate(result.getLong(columns.get(PartyColumn.DATE).getName()));
+		party.setDate(result.getDate(columns.get(PartyColumn.DATE).getName()).getTime());
 		party.setEntriesTotal(result.getInt(columns.get(PartyColumn.ENTRIES_TOTAL).getName()));
 		party.setEntriesMale(result.getInt(columns.get(PartyColumn.ENTRIES_MALE).getName()));
 		party.setEntriesFemale(result.getInt(columns.get(PartyColumn.ENTRIES_FEMALE).getName()));
@@ -59,7 +59,7 @@ public class PartyDAO extends SQLDAO<Party> {
 
 	@Override
 	protected void fillInsertStatement (final PreparedStatement statement, final Party obj) throws SQLException {
-		int index = 0;
+		int index = 1;
 		statement.setDate(index++, new Date(obj.getDate()));
 		statement.setInt(index++, obj.getEntriesTotal());
 		statement.setInt(index++, obj.getEntriesMale());
