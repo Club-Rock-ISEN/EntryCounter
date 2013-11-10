@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.clubrockisen.entrycounter.common.Party;
 import org.clubrockisen.entrycounter.common.Party.PartyColumn;
@@ -49,7 +50,10 @@ public class PartyDAO extends SQLDAO<Party> {
 		final Party party = new Party();
 		
 		party.setIdParty(result.getInt(columns.get(PartyColumn.ID).getName()));
-		party.setDate(result.getDate(columns.get(PartyColumn.DATE).getName()).getTime());
+		// Get the GMT date as saved in the database
+		final long gmtDate = result.getDate(columns.get(PartyColumn.DATE).getName()).getTime();
+		// Convert to the current time zone
+		party.setDate(gmtDate + TimeZone.getDefault().getOffset(gmtDate));
 		party.setEntriesTotal(result.getInt(columns.get(PartyColumn.ENTRIES_TOTAL).getName()));
 		party.setEntriesMale(result.getInt(columns.get(PartyColumn.ENTRIES_MALE).getName()));
 		party.setEntriesFemale(result.getInt(columns.get(PartyColumn.ENTRIES_FEMALE).getName()));
