@@ -28,22 +28,21 @@ public class H2DAOFactory extends AbstractDAOFactory {
 	
 	/**
 	 * Constructor #1.<br />
+	 * @param dataSourceConfiguration
+	 *        the data source configuration.
 	 */
-	private H2DAOFactory () {
-		super();
-	}
-	
-	@Override
-	protected void init () {
-		final DataSourceConfiguration dbInfos = getDataSourceConfiguration();
-		H2Utils.initDatabase(dbInfos);
+	private H2DAOFactory (final DataSourceConfiguration dataSourceConfiguration) {
+		super(dataSourceConfiguration);
+		H2Utils.initDatabase(dataSourceConfiguration);
 		
 		try {
-			connection = DriverManager.getConnection(dbInfos.getUrl(), dbInfos.getUsername(), dbInfos.getPassword());
+			connection = DriverManager.getConnection(dataSourceConfiguration.getUrl(),
+					dataSourceConfiguration.getUsername(),
+					dataSourceConfiguration.getPassword());
 			if (connection.isValid(0)) {
 				connection.setAutoCommit(true);
 				if (lg.isLoggable(Level.INFO)) {
-					lg.info("Connection to H2 database at " + dbInfos.getUrl() + " is successfull");
+					lg.info("Connection to H2 database at " + dataSourceConfiguration.getUrl() + " is successfull");
 				}
 			} else {
 				throw new SQLException("Connection to H2 database is not valid");
