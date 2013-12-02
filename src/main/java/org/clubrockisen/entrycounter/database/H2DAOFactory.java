@@ -21,17 +21,17 @@ import com.alexrnl.commons.error.ExceptionUtils;
  */
 public class H2DAOFactory extends AbstractDAOFactory {
 	/** Logger */
-	private static Logger	lg	= Logger.getLogger(H2DAOFactory.class.getName());
+	private static Logger		lg	= Logger.getLogger(H2DAOFactory.class.getName());
 	
 	/** The connection to the database. */
-	private Connection		connection;
+	private final Connection	connection;
 	
 	/**
 	 * Constructor #1.<br />
 	 * @param dataSourceConfiguration
 	 *        the data source configuration.
 	 */
-	private H2DAOFactory (final DataSourceConfiguration dataSourceConfiguration) {
+	public H2DAOFactory (final DataSourceConfiguration dataSourceConfiguration) {
 		super(dataSourceConfiguration);
 		H2Utils.initDatabase(dataSourceConfiguration);
 		
